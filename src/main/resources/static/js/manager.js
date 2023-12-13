@@ -350,12 +350,13 @@ function createStationSubmitButton() {
             return;
         }
         // 住所に駅名を結合
-        var addressToDb = address + "(" + stationName + ")";
+		//var addressToDb = address + "(" + stationName + ")";
+		
         // リクエストボディを作成
         var requestBody = {
             stationName: stationName,
             lineName: lineName,
-            address: addressToDb
+            address: address
         };
         // ユーザーに確認を求める
 		var userConfirmed = confirm('本当に提出しますか？');
@@ -451,14 +452,15 @@ function createLineSubmitButton() {
             alert('全ての項目を入力してください');
             return;
         }
-        // データベースに送信するリクエストボディを構築
-        var addressToDb = address + "(" + stationName + ")";
+        //住所に駅名を結合
+		//var addressToDb = address + "(" + stationName + ")";
+		
         var requestBody = {
             stationName: stationName,
             lineCd: lineCd,
             lineName: lineName,
             prefName: prefName,
-            address: addressToDb
+            address: address
         };
         // ユーザーに確認を求める
 		var userConfirmed = confirm('本当に提出しますか？');
