@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>show City Names</title>
+    <link th:href="@{/css/showCity.css}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <h1><span th:text="${prefecture}"></span>の市町村</h1>
+        <ul>
+            <li th:each="city : ${cities}">
+                <span th:text="${city}"></span>
+            </li>
+        </ul>
+    </div>
+</body>
+
+
+
+</html>

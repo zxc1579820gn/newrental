@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>sampleList</title>
+</head>
+<body>
+    <!--コメント-->
+    <div class="sampleArea" th:fragment="sampleArea">
+    <h2 class="sampleTitle">サンプル</h2>
+    <div th:each="sample:${samplePageInfo.list}">
+        <!--コメント-->
+        <div class="sampleInfo">
+            <a th:href="@{/sampleList/posted/{sampleId}(sampleId=${sample.getsampleId()})}">
+                <img th:text="${sample.getsampleContentImage()}" alt="" src="">
+                <div class="sampleItems">
+                    <span th:class="sampleOtherItem" th:text="${sample.getCategoryId()}"></span>
+                    <p class="sampleItem" th:text="${sample.getsampleSubTitle()}"></p>
+                </div>
+                <div class="sampleOtherItems">
+                    <span th:class="sampleOtherItem" th:text="'リリース日：'+${sample.getsampleEditDate()}"></span>
+                </div>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

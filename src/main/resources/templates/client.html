@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>クライアント側</title>
+    <link th:href="@{/css/client.css}" rel="stylesheet">
+    <script th:src="@{/js/client.js}" defer="defer"></script>
+</head>
+
+<body>
+    <div id="header" class="header" >
+        <div>
+            <label id="selectedButtonLabel" > 検索方法の選択 </label>
+        </div>
+        <div class="mainArea" >
+            <button onclick="searchFromArea()" id="searchAreaBtn" class="searchAreaBtn"  >地域から検索</button>
+            <button onclick="searchFromLine()" id="searchLineBtn" class="searchLineBtn"  >路線から検索</button>
+        </div>
+    </div>
+    <div id="header" class="btnArea" >
+        <div id="button-container"></div>
+    </div>
+</body>
+
+</html>

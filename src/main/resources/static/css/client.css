@@ -1,0 +1,79 @@
+body {
+    font-family: Arial, sans-serif;
+}
+#button-container {
+    margin-top: 20px;
+    height: 90%;
+    width: 80%;
+    /* background-color: #4CAF50; */
+    overflow: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    
+}
+label {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.mainArea{
+	width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 20vh;
+    
+}
+#searchAreaBtn{
+    padding: 10px;
+    margin: 5px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 43%;
+}
+#searchLineBtn{
+    padding: 10px;
+    margin: 5px;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 43%;
+}
+.header{
+	display: flex;
+	flex-direction: column;
+    align-items: center;
+}
+.btnArea{
+	width: 100vw;
+	height: 40vh;
+	/* background-color: blue; */
+	display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+.AreaBtn{
+	width: 100px;
+    padding: 10px;
+    margin: 5px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.AreaBtn2{
+	width: 100px;
+    padding: 10px;
+    margin: 5px;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

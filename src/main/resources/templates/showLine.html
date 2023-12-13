@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>show Line Names</title>
+    <script th:src="@{/js/showLine.js}" defer="defer"></script>
+    <link th:href="@{/css/showLine.css}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="left-section">
+            <h1><span th:text="${prefecture}"></span>の路線名</h1>
+            <form id="lineNamesForm">
+                <ul>
+                    <li th:each="lineName : ${lineNames}">
+                        <div class="checkbox-container">
+                            <input type="checkbox" name="selectedLineNames" th:value="${lineName}" />
+                            <span th:text="${lineName}"></span>
+                        </div>
+                    </li>
+                </ul>
+            </form>
+        </div>
+        <div class="right-section">
+            <button type="button" onclick="submitForm(this)" data-lineName="${lineName}" class="search-button">駅を探す</button>
+            <div id="main-container"></div>
+        </div>
+    </div>
+</body>
+
+
+
+</html>

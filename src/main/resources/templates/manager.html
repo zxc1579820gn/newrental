@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>管理者側</title>
+	<link th:href="@{/css/manager.css}" rel="stylesheet">
+    <script th:src="@{/js/manager.js}" defer="defer"></script>
+</head>
+
+<body>   
+   	<div class="header" >
+        <div>
+            <label id="selectedButtonLabel">Manager</label>
+        </div>
+        <div class="mainArea">
+            <button onclick="search()" id="showLineListBtn">リスト</button>
+            <button onclick="edit()" id="editBtn" class="editBtn">編集</button>
+        </div>
+    </div>
+    <div class="btnArea" >
+        <div id="button-container"></div>
+    </div>
+</body>
+
+</html>

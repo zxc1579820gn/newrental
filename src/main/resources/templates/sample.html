@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>サンプル</title>
+    <!--<script type="text/javascript" th:src="@{/sample/jquery/jquery.min.js}"></script>-->
+    <!--<link th:href="@{/css/sample.css}" rel="styleSheet">-->
+    <script th:src="@{/js/sample.js}" defer="defer"></script>
+</head>
+
+<body>
+
+<!--コメント-->
+<!--<div class="sampleArea" th:replace="/layout/sample2::sampleArea"></div>-->
+
+
+    <div id="button-container"></div>
+    <button onclick="fetchData()">Fetch Data</button>
+
+
+	<h1>All Cities</h1>
+    <ul>
+        <!-- 使用 Thymeleaf 迭代顯示 cities -->
+        <li th:each="city : ${cities}">
+            <span th:text="${city}"></span>
+        </li>
+    </ul>
+    
+    <h1>All Prefectures</h1>
+    <ul>
+        <!-- 使用 Thymeleaf 迭代顯示 prefectures -->
+        <li th:each="prefecture : ${prefectures}">
+            <span th:text="${prefecture}"></span>
+        </li>
+    </ul>
+    
+    <h1>Cities in ${prefecture}</h1>
+    <ul>
+        <!-- 使用 Thymeleaf 迭代顯示 cities -->
+        <li th:each="city : ${cities}">
+            <span th:text="${city}"></span>
+        </li>
+    </ul>
+
+    <h1>Line Names</h1>
+    <ul>
+        <li th:each="lineName : ${lineNames}">
+            <span th:text="${lineName}"></span>
+        </li>
+    </ul>
+    
+    <h1>Station Names</h1>
+    <ul>
+        <!-- 使用 Thymeleaf 迭代顯示 stationNames -->
+        <li th:each="stationName : ${stationNames}">
+            <span th:text="${stationName}"></span>
+        </li>
+    </ul>
+    
+    
+    <h1>Line and Stations</h1>
+    <ul>
+		<li th:each="lineAndStation : ${lineAndStations}">
+		    <span th:text="${lineAndStation.lineName}"></span> -
+		    <span th:text="${lineAndStation.stationName}"></span>
+		</li>
+    </ul>
+
+
+</body>
+
+
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>show Line Names</title>
+    <link th:href="@{/css/managerShowLine.css}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="left-section">
+            <h1><span th:text="${prefecture}"></span> <span th:text="${address}"></span>の路線名</h1>
+            <form id="lineNamesForm">
+                <ul>
+                    <li th:each="lineName : ${lineNames}">
+                        <div class="checkbox-container">
+                            <span th:text="${lineName}"></span>
+                        </div>
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </div>
+</body>
+
+
+
+</html>

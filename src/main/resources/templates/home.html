@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ホーム</title>
+<!--     <link th:href="@{/css/home.css}" rel="stylesheet"> -->
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <script th:src="@{/js/home.js}" defer="defer"></script>
+	<script type="module" th:src="@{/js/Bg.js}" defer="defer"></script>
+</head>
+
+<body>
+	<div id="main">
+	
+		<section id="one" class="tiles">
+		
+			<article onclick="manager()" id="managerbtn" style="cursor: pointer;">
+				<header class="major">
+					<h3>
+						<span class="link" >管理者側</span>
+					</h3>
+				</header>
+			</article>
+			
+			<article onclick="client()" id="clientbtn" style="cursor: pointer;">
+				<header class="major">
+					<h3>
+						<span class="link">クライアント側</span>
+					</h3>
+				</header>
+			</article>
+			
+		</section>
+	</div>
+</body>
+
+</html>
