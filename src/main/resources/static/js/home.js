@@ -20,6 +20,28 @@ function client() {
         window.location.href = targetUrl;
     });
 }
+function PMmanager() {
+    // ボタン要素を取得
+    var button = document.getElementById('PMmanagerbtn');
+    // クリックイベントリスナーを追加
+    button.addEventListener('click', function() {
+        // ターゲットURLを指定
+        var targetUrl = '/PMmanager';
+        // ページを指定のURLにリダイレクト
+        window.location.href = targetUrl;
+    });
+}
+function PMclient() {
+    // ボタン要素を取得
+    var button = document.getElementById('PMclientbtn');
+    // クリックイベントリスナーを追加
+    button.addEventListener('click', function() {
+        // ターゲットURLを指定
+        var targetUrl = '/PMclient';
+        // ページを指定のURLにリダイレクト
+        window.location.href = targetUrl;
+    });
+}
 
 
 

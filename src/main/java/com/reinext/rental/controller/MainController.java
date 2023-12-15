@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.reinext.rental.entity.PMDetail1;
 import com.reinext.rental.repository.LineAndStationDao;
 import com.reinext.rental.req.LineReq;
 import com.reinext.rental.req.StationReq;
 import com.reinext.rental.service.ifs.AllPrefecturesService;
 import com.reinext.rental.service.ifs.LineAndStationService;
+import com.reinext.rental.service.ifs.PMDetail1Service;
 
 @Controller
 public class MainController {
@@ -32,17 +34,24 @@ public class MainController {
 	@Autowired
 	private LineAndStationDao lineAndStationDao;
 	
+	@Autowired
+	private PMDetail1Service pmDetail1Service;
+	
 	 @RequestMapping(value = "/home")
 	 public void home() {
-	  
 	 };
 	 @RequestMapping(value = "/manager")
 	 public void manager() {
-	  
 	 };
 	 @RequestMapping(value = "/client")
 	 public void client() {
-	  
+	 };
+	 //PropertyManagement 
+	 @RequestMapping(value = "/PMmanager")
+	 public void PMmanager() {
+	 };
+	 @RequestMapping(value = "/PMclient")
+	 public void PMclient() {
 	 };
 	 
     @GetMapping("/get_all_cities")
@@ -184,6 +193,11 @@ public class MainController {
 
     
     
+    
+    
+    
+    
+
     
     
     
