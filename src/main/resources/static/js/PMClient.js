@@ -21,10 +21,7 @@ fetch('/get_all_pm')
                     <td>${building.buildingType}</td>
                     <td>${building.floorArea}</td>
                     <td>${building.otherFloorArea}</td>
-                    <td>
-                    <button onclick="editButtonClick(${building.id})">編集</button>
-                    <button onclick="delButtonClick(${building.id})">削除</button>
-                    </td>
+                    <td><button onclick="handleButtonClick(${building.id})">物件情報</button></td>
                 `;
                 tableBody.appendChild(row);
             });
@@ -33,21 +30,14 @@ fetch('/get_all_pm')
         console.error('Error:', error);
     });
 //=================================================================================================================    
-//編集BTN
-function editButtonClick(buildingId) {
-console.log('editButtonClick:', buildingId);
+
+//物件情報BTN
+function handleButtonClick(buildingId) {
+    // 使用 Thymeleaf 的语法构建 URL
+    const url = '/showDetailPMclient/' + buildingId; // 注意这里使用了 Thymeleaf 的语法
+    // 执行页面跳转
+    window.location.href = url;
 }
-//削除BTN
-function delButtonClick(buildingId) {
-console.log('delButtonClick:', buildingId);
-}
-
-
-
-
-function creat(){
-        // ターゲットURLを指定// 指定目標URL
-        var targetUrl = '/creatPMmanager';
-        // ページを指定のURLにリダイレクト// 將頁面重定向到指定的URL
-        window.location.href = targetUrl;
-}
+    
+    
+    

@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.reinext.rental.entity.LineAndStation;
+import com.reinext.rental.entity.PMDetail1;
 import com.reinext.rental.repository.AllPrefecturesDao;
 import com.reinext.rental.service.ifs.AllPrefecturesService;
 import com.reinext.rental.service.ifs.LineAndStationService;
+import com.reinext.rental.service.ifs.PMDetail1Service;
 
 
 
@@ -21,12 +23,24 @@ class RentalApplicationTests {
 	
 	@Autowired
 	private LineAndStationService lineAndStationService;
+	@Autowired
+	private PMDetail1Service pmDetail1Service;
 	
     
 	
     
 	
 	@Test
+    public void getPMByPmId() {
+    	System.out.println("================================");
+    	int pmId = 10; 
+    	pmDetail1Service.getPMByPmId(pmId);
+        PMDetail1 result = pmDetail1Service.getPMByPmId(pmId);
+        System.out.println("Result: " + result);
+        System.out.println("================================");
+    }
+	
+	
     public void testAddLine() {
     	System.out.println("================================");
     	String stationName = "testStationName"; 

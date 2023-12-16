@@ -19,8 +19,8 @@ public class PMDetail1ServiceImpl implements PMDetail1Service{
     }
 
     @Override
-    public PMDetail1 getPropertyDetailById(int id) {
-        return pmDetail1Dao.findById(id).orElse(null);
+    public PMDetail1 getPMByPmId(int pmId) {
+        return pmDetail1Dao.findByPmId(pmId);
     }
 	
 	

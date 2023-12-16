@@ -5,23 +5,27 @@
 <head>
     <meta charset="UTF-8">
     <title>物件管理クライアント側</title>
-	<link th:href="@{/css/manager.css}" rel="stylesheet">
-    <script th:src="@{/js/manager.js}" defer="defer"></script>
+	<link th:href="@{/css/PMClient.css}" rel="stylesheet">
+    <script th:src="@{/js/PMClient.js}" defer="defer"></script>
 </head>
 
 <body>   
-   	<div class="header" >
-        <div>
-            <label id="selectedButtonLabel">PMClient</label>
-        </div>
-        <div class="mainArea">
-            <button onclick="search()" id="showLineListBtn">リスト</button>
-            <button onclick="edit()" id="editBtn" class="editBtn">編集</button>
-        </div>
-    </div>
-    <div class="btnArea" >
-        <div id="button-container"></div>
-    </div>
-</body>
+		<table id="pmTable">
+		    <thead>
+		    <tr>
+		        <th>ID</th>
+		        <th>名称</th>
+		        <th>住居表示</th>
+		        <th>種類</th>
+		        <th>床面積(㎡)</th>
+		        <th>其他樓地板面積(㎡)</th>
+		        <th></th>
+		    </tr>
+		    </thead>
+		    <tbody>
+		    <!-- 表格内容将通过 JavaScript 动态填充 -->
+		    </tbody>
+		</table>
+
 
 </html>

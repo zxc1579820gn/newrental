@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>物件管理管理者側</title>
+	<link th:href="@{/css/creatPMmanager.css}" rel="stylesheet">
+    <script th:src="@{/js/showDetailPMclient.js}" defer="defer"></script>
+
+    <link th:href="@{/css/assets/vendors/flag-icon-css/css/flag-icon.min.css}" rel="stylesheet" >
+    <link  th:href="@{/css/assets/vendors/css/vendor.bundle.base.css}" rel="stylesheet">
+    <link  th:href="@{/css/assets/vendors/select2/select2.min.css}" rel="stylesheet">
+    <link  th:href="@{/css/assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css}" rel="stylesheet"> 
+    <link  th:href="@{/css/assets/css/demo_1/style.css}" rel="stylesheet">
+</head>
+
+<body>  
+ 
+
+
+<div class="container-scroller">
+	<div class="main-panel">
+    	<div class="content-wrapper">
+        	<div class="row">
+<!-- 賃貸借の目的物-->
+	          <div class="col-12 grid-margin stretch-card">
+	            <div class="card">
+	              <div class="card-body" style="display: flex;justify-content: center;">
+	                <h1 class="card-title" style="font-size: 20pt;">賃貸借の目的物</h1>
+	              </div>
+	            </div>
+	          </div>
+
+              <!-- 賃貸借の目的物LEFT-->
+              <div class="col-md-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <!-- 名称 -->
+                    <h4 class="card-title">名称</h4>
+                          <div class="form-group">
+                              <input type="text" id="building-name" name="buildingName"  class="typeahead" >
+                          </div>
+                          <div class="form-group row">
+                            <!-- 棟 -->
+                            <div class="col">
+                              <label>棟</label>
+                              <div>
+                                <input type="text" id="building-tower" name="buildingTower" class="typeahead" >
+                              </div>
+                            </div>
+                            <!-- 階 -->
+                            <div class="col">
+                              <label>階</label>
+                              <div>
+                                <input type="text" id="building-floor" name="buildingFloor" class="typeahead" >
+                              </div>
+                            </div>
+                            <!-- 号室 -->
+                            <div class="col">
+                              <label>号室</label>
+                              <div>
+                                <input type="text" id="building-room" name="buildingRoom"  class="typeahead" >
+                              </div>
+                            </div>
+                          </div>
+                    <!-- 所 在 地 -->
+                    <h4 class="card-title">所 在 地</h4>
+                          <!-- 住居表示 -->
+                          <div class="form-group">
+                            <label for="residence-address">住居表示:</label>
+                            <input type="text" id="residence-address" name="residenceAddress" class="form-control">
+                          </div>
+                          <!-- 登記簿 -->
+                          <div class="form-group">
+                            <label for="registration-record">登記簿:</label>
+                            <input type="text" id="registration-record" name="registrationRecord" class="form-control">
+                          </div>
+                    <!-- 種類 -->
+                    <h4 class="card-title">種類</h4>
+                    <form>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+							<!-- マンション -->
+                            <div class="form-check">
+                            <input type="radio" class="form-check-input" id="building-type-mansion" name="building-type-radios" value="マンション" /> 
+                              <label class="form-check-label">
+                                マンション </label>
+                            </div>
+							<!-- アパート -->
+                            <div class="form-check">
+                            <input type="radio" class="form-check-input" id="building-type-apartment" name="building-type-radios" value="アパート"/>
+                              <label class="form-check-label">
+                                 アパート </label>
+                            </div>
+							<!-- 戸建 -->
+                            <div class="form-check">
+                            <input type="radio" class="form-check-input" id="building-type-detached" name="building-type-radios" value="戸建"/>
+                              <label class="form-check-label">
+                                 戸建 </label>
+                            </div>
+							<!-- テラスハウス -->
+                            <div class="form-check">
+                            <input type="radio" class="form-check-input" id="building-type-terrace" name="building-type-radios" value="テラスハウス"/>
+                              <label class="form-check-label">
+                                 テラスハウス </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+             <!-- 賃貸借の目的物RIGHT-->
+              <div class="col-md-6 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <!-- 構造 -->
+                        <h4 class="card-title">構造</h4>
+                        <div class="form-group">
+                            <input type="text" id="building-structure" name="buildingStructure" class="form-control" placeholder="建物構造">
+                        </div>
+                        <!-- 戸數 -->
+                        <div class="form-group">
+                            <label for="number-of-units">戸數:</label>
+                            <input type="text" id="number-of-units" name="numberOfUnits" class="form-control" placeholder="戸數">
+                        </div>
+                        <!-- 建築時期 -->
+                        <div class="form-group">
+                          <!-- 新築 -->
+                          <div class="form-group">
+                            <label for="year">新築年份:</label>
+                            <input type="text" id="year" name="constructionYear" class="form-control" placeholder="X年X月新築">
+                          </div>
+                          <!-- 大規模修繕 -->
+                          <label for="big-construction-date">大規模修繕を実施した場合</label>
+                          <input type="text" id="big-construction-date-year" name="constructionDate" class="form-control" placeholder="X年実施">
+
+                        </div>
+                        <!-- 住戸番號和間取 -->
+                        <div class="form-group row">
+                            <div class="col">
+                                <label for="unit-number">住戸番號:</label>
+                                <input type="text" id="unit-number" name="unitNumber" class="form-control" placeholder="号室">
+                            </div>
+                            <div class="col">
+                                <label for="layout">間取り:</label>
+                                <input type="text" id="layout" name="layout" class="form-control" placeholder="間取り">
+                            </div>
+                        </div>
+                        <!-- 床面積 -->
+                        <div class="form-group">
+                            <label for="floor-area">床面積:(㎡)</label>
+                            <input type="text" id="floor-area" name="floorArea" class="form-control" placeholder="㎡">
+                        </div>
+                        <div class="form-group">
+                          <label for="floor-area2">（左記以外に、バルコニー ㎡）</label>
+                          <input type="text" id="floor-area2" name="floorArea2" class="form-control" placeholder="㎡">
+                      </div>
+                    </div>
+                </div>
+            </div>
+            
+<!-- ========================================================================================================================-->
+<div class="col-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body" style="display: flex;justify-content: center;">
+      <h1 class="card-title" style="font-size: 20pt;">============================================================</h1>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+			</div>
+    	</div>
+    </div>
+</div>
+</body>
+
+</html>
