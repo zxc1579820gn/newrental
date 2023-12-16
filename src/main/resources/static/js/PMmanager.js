@@ -35,11 +35,15 @@ fetch('/get_all_pm')
 //=================================================================================================================    
 //編集BTN
 function editButtonClick(buildingId) {
-console.log('editButtonClick:', buildingId);
+	console.log('editButtonClick:', buildingId);
+	// ターゲットURLを指定// 指定目標URL
+	const url = '/editDetailPMmanager/' + buildingId;
+	// ページを指定のURLにリダイレクト// 將頁面重定向到指定的URL
+	window.location.href = url;
 }
 //削除BTN
 function delButtonClick(buildingId) {
-console.log('delButtonClick:', buildingId);
+	console.log('delButtonClick:', buildingId);
 }
 
 

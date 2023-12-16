@@ -13,6 +13,10 @@ if (pmIdMatch) {
         .then(data => {
             //data中的值
             console.log('Property Detail:', data);
+            
+            
+            document.getElementById('lineName').innerText ="lineName: "+data.lineName;
+            document.getElementById('stationName').innerText ="stationName: "+data.stationName;
 			// 填充页面的输入字段
             document.getElementById('building-name').value = data.buildingName;
             document.getElementById('building-tower').value = data.buildingTower;

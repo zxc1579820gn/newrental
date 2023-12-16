@@ -47,15 +47,15 @@ public class MainController {
 	 @RequestMapping(value = "/PMclient")
 	 public void PMclient() {
 	 };
-	 @GetMapping("/showDetailPMclient/{buildingId}")
-	 public String showDetailPMclient(@PathVariable(name = "buildingId") Long buildingId, Model model) {
+	 @GetMapping("/showDetailPMclient/{pmId}")
+	 public String showDetailPMclient(@PathVariable(name = "pmId") Long pmId, Model model) {
 	     // 处理逻辑，将数据放入模型
 	     return "showDetailPMclient"; // 返回Thymeleaf模板的名称
 	 }
-	 @GetMapping("/showDtailPMmanager/{buildingId}")
-	 public String showDetailPMmanager(@PathVariable(name = "buildingId") Long buildingId, Model model) {
+	 @GetMapping("/editDetailPMmanager/{pmId}")
+	 public String showDetailPMmanager(@PathVariable(name = "pmId") Long pmId, Model model) {
 	     // 处理逻辑，将数据放入模型
-	     return "showDetailPMmanager"; // 返回Thymeleaf模板的名称
+	     return "editDetailPMmanager"; // 返回Thymeleaf模板的名称
 	 }
 	 
 
