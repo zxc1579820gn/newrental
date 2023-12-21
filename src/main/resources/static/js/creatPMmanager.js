@@ -2,6 +2,64 @@
 var selectedLines = [];
 // 在全局范围定义一个数组，用于存储已选的車站
 var selectedStation = [];
+
+//====================================Add Lines And Station==========================================
+document.addEventListener('DOMContentLoaded', function () {
+    // 获取包含线路按钮的容器
+    var lineContainer = document.getElementById('line-container');
+    // 获取包含站点按钮的容器
+    var stationContainer = document.getElementById('station-container');
+    // 将 selectedLines 中的值作为线路按钮添加到容器
+    selectedLines.forEach(function (line) {
+        addButton(line, lineContainer, selectedLines);
+    });
+    // 将 selectedStation 中的值作为站点按钮添加到容器
+    selectedStation.forEach(function (station) {
+        addButton(station, stationContainer, selectedStation);
+    });
+});
+// 添加按钮的通用函数
+function addButton(value, container, array) {
+    var button = document.createElement('button');
+    button.textContent = value;
+    // 根据数组类型设置不同的class
+    if (array === selectedLines) {
+        button.className = 'AreaBtn3';
+    } else if (array === selectedStation) {
+        button.className = 'AreaBtn';
+    }
+    // 添加点击事件处理程序
+    button.addEventListener('click', function () {
+        // 当按钮被点击时，从相应的数组中移除相应的值
+        var index = array.indexOf(value);
+        if (index !== -1) {
+            array.splice(index, 1);
+            // 更新页面
+            updateButtons();
+            document.getElementById('stationName').innerText ="stationName: "+selectedStation;
+			document.getElementById('lineName').innerText ="lineName: "+selectedLines;
+        }
+    });
+    // 将按钮添加到容器中
+    container.appendChild(button);
+}
+// 更新按钮的函数，当 selectedStation 或 selectedLines 改变时调用
+function updateButtons() {
+    var lineContainer = document.getElementById('line-container');
+    var stationContainer = document.getElementById('station-container');
+    // 清空容器
+    lineContainer.innerHTML = '';
+    stationContainer.innerHTML = '';
+    // 将 selectedLines 中的值作为线路按钮重新添加到容器
+    selectedLines.forEach(function (line) {
+        addButton(line, lineContainer, selectedLines);
+    });
+    // 将 selectedStation 中的值作为站点按钮重新添加到容器
+    selectedStation.forEach(function (station) {
+        addButton(station, stationContainer, selectedStation);
+    });
+}
+//=======================================================================================================
 function record(){
 	// ボタンを含むコンテナを取得
     var buttonContainer = document.getElementById('button-container');
@@ -20,24 +78,171 @@ function record(){
     
     // 收集所有填寫的資料
     var formData = {
+      //=========================================賃貸借の目的物===================================
+      //名 称
       buildingName: document.getElementById('building-name').value,
+      // 棟
       buildingTower: document.getElementById('building-tower').value,
+      //階
       buildingFloor: document.getElementById('building-floor').value,
+      //号室
       buildingRoom: document.getElementById('building-room').value,
+      //住居表示
       residenceAddress: document.getElementById('residence-address').value,
+      //登記簿
       registrationRecord: document.getElementById('registration-record').value,
+      //種 類
       buildingType: getSelectedBuildingType(), // 取得選中的建築種類
+      //構 造
       buildingStructure: document.getElementById('building-structure').value,
+      //戸 数
       numberOfUnits: document.getElementById('number-of-units').value,
+      //建築時期
       constructionYear: document.getElementById('year').value,
+      //大規模修繕を
       bigConstructionDate: getBigConstructionDate(), // 取得大規模修繕年份或不詳
+      //住戸番号
       unitNumber: document.getElementById('unit-number').value,
+      //間取り
       layout: document.getElementById('layout').value,
+      //床 面 積
       floorArea: document.getElementById('floor-area').value,
+      // 其他床 面 積
       otherFloorArea: document.getElementById('floor-area2').value,
-      
+      //==================================住戸部分の設備==========================================
+      // 電気
+	  electricity: document.querySelector('input[name="electricity"]:checked').value,
+	  electricityContext: document.getElementById('electricity-context').value,
+	  electricityRemarks: document.getElementById('electricity-remarks').value,
+	  // ガス
+	  gas: document.querySelector('input[name="gas"]:checked').value,
+	  gasContext: document.getElementById('gas-context').value,
+	  gasRemarks: document.getElementById('gas-remarks').value,
+	  //コンロ
+	  stoveValue: document.querySelector('input[name="stove"]:checked').value,
+	  stoveContext: document.getElementById('stove-context').value,
+	  stoveRemarks: document.getElementById('stove-remarks').value,
+	  //上水道
+	  waterSupplyValue: document.querySelector('input[name="water-supply"]:checked').value,
+	  waterSupplyContext: document.getElementById('water-supply-context').value,
+	  waterSupplyRemarks: document.getElementById('water-supply-remarks').value,
+	  //下水道
+	  sewerageValue: document.querySelector('input[name="sewerage"]:checked').value,
+	  sewerageContext: document.getElementById('sewerage-context').value,
+	  sewerageRemarks: document.getElementById('sewerage-remarks').value,
+	  // 台所
+	  kitchenValue: document.querySelector('input[name="kitchen"]:checked').value,
+	  kitchenContext: document.getElementById('kitchen-context').value,
+	  kitchenRemarks: document.getElementById('kitchen-remarks').value,
+	  //トイレ
+	  toiletValue: document.querySelector('input[name="toilet"]:checked').value,
+	  toiletContext: document.getElementById('toilet-context').value,
+	  toiletRemarks: document.getElementById('toilet-remarks').value,
+	  // 浴室
+	  bathroomValue: document.querySelector('input[name="bathroom"]:checked').value,
+	  bathroomContext: document.getElementById('bathroom-context').value,
+	  bathroomRemarks: document.getElementById('bathroom-remarks').value,
+	   // 洗面台
+	  washbasinValue: document.querySelector('input[name="washbasin"]:checked').value,
+	  washbasinContext: document.getElementById('washbasin-context').value,
+	  washbasinRemarks: document.getElementById('washbasin-remarks').value,
+      // 洗濯機置場
+	  laundryAreaValue: document.querySelector('input[name="laundry-area"]:checked').value,
+	  laundryAreaContext: document.getElementById('laundry-area-context').value,
+	  laundryAreaRemarks: document.getElementById('laundry-area-remarks').value,
+	  // 給湯設備
+	  waterHeaterValue: document.querySelector('input[name="water-heater"]:checked').value,
+	  waterHeaterContext: document.getElementById('water-heater-context').value,
+	  waterHeaterRemarks: document.getElementById('water-heater-remarks').value,
+	  // 冷暖房設備（エアコン）
+	  airConditionerValue: document.querySelector('input[name="air-conditioner"]:checked').value,
+	  airConditionerContext: document.getElementById('air-conditioner-context').value,
+	  airConditionerRemarks: document.getElementById('air-conditioner-remarks').value,
+      	// 照明器具
+		lightingValue: document.querySelector('input[name="lighting"]:checked').value,
+		lightingContext: document.getElementById('lighting-context').value,
+		lightingRemarks: document.getElementById('lighting-remarks').value,
+		// 備付家具
+		furnitureValue: document.querySelector('input[name="furniture"]:checked').value,
+		furnitureContext: document.getElementById('furniture-context').value,
+		furnitureRemarks: document.getElementById('furniture-remarks').value,
+		// 地デジ対応
+		digitalTvValue: document.querySelector('input[name="digital-tv"]:checked').value,
+		digitalTvContext: document.getElementById('digital-tv-context').value,
+		digitalTvRemarks: document.getElementById('digital-tv-remarks').value,
+		// CATV対応
+		catvValue: document.querySelector('input[name="catv"]:checked').value,
+		catvContext: document.getElementById('catv-context').value,
+		catvRemarks: document.getElementById('catv-remarks').value,
+		 // インターネット
+		internetValue: document.querySelector('input[name="internet"]:checked').value,
+		internetContext: document.getElementById('internet-context').value,
+		internetRemarks: document.getElementById('internet-remarks').value,
+		// トランクルーム
+		trunkRoom: document.querySelector('input[name="trunk-room"]:checked').value,
+		trunkRoomContext: document.getElementById('trunk-room-context').value,
+		trunkRoomRemarks: document.getElementById('trunk-room-remarks').value,
+		 // 専用庭
+		privateGarden: document.querySelector('input[name="private-garden"]:checked').value,
+		privateGardenContext: document.getElementById('private-garden-context').value,
+		privateGardenRemarks: document.getElementById('private-garden-remarks').value,
+		// ルーフバルコニー
+		roofBalcony: document.querySelector('input[name="roof-balcony"]:checked').value,
+		roofBalconyContext: document.getElementById('roof-balcony-context').value,
+		roofBalconyRemarks: document.getElementById('roof-balcony-remarks').value,
+		// 鍵
+		keyValue: document.querySelector('input[name="key"]:checked').value,
+		keyContext: document.getElementById('key-context').value,
+		keyRemarks: document.getElementById('key-remarks').value,
+      //==================================共用部分の設備・施設==========================================
+        // エレベーター
+		elevatorValue: document.querySelector('input[name="elevator"]:checked').value,
+		elevatorContext: document.getElementById('elevator-context').value,
+		elevatorRemarks: document.getElementById('elevator-remarks').value,
+		// オートロック
+		autoLockValue: document.querySelector('input[name="auto-lock"]:checked').value,
+		autoLockContext: document.getElementById('auto-lock-context').value,
+		autoLockRemarks: document.getElementById('auto-lock-remarks').value,
+		// メールボックス
+		mailboxValue: document.querySelector('input[name="mailbox"]:checked').value,
+		mailboxContext: document.getElementById('mailbox-context').value,
+		mailboxRemarks: document.getElementById('mailbox-remarks').value,
+		// 宅配ボックス
+		deliveryBoxValue: document.querySelector('input[name="delivery-box"]:checked').value,
+		deliveryBoxContext: document.getElementById('delivery-box-context').value,
+		deliveryBoxRemarks: document.getElementById('delivery-box-remarks').value,
+		// トランクルーム
+		storageRoom: document.querySelector('input[name="storage-room"]:checked').value,
+		storageRoomContext: document.getElementById('storage-room-context').value,
+		storageRoomRemarks: document.getElementById('storage-room-remarks').value,
+		// 駐車場
+		parking: document.querySelector('input[name="parking"]:checked').value,
+		parkingContext: document.getElementById('parking-context').value,
+		parkingRemarks: document.getElementById('parking-remarks').value,
+		// 駐輪場
+		bikeParking: document.querySelector('input[name="bike-parking"]:checked').value,
+		bikeParkingContext: document.getElementById('bike-parking-context').value,
+		bikeParkingRemarks: document.getElementById('bike-parking-remarks').value,
+		// バイク置場
+		motorcycleParking: document.querySelector('input[name="motorcycle-parking"]:checked').value,
+		motorcycleParkingContext: document.getElementById('motorcycle-parking-context').value,
+		motorcycleParkingRemarks: document.getElementById('motorcycle-parking-remarks').value,
+		//==================================契約期間==========================================
+		// 契約始期
+		contractStartDate: document.getElementById('contract-start-date').value,
+		// 契約終期
+		contractEndDate: document.getElementById('contract-end-date').value,
+		// 合計契約時間
+		totalContractDuration: document.getElementById('total-contract-duration').value,
+		// 目的物件の引渡日
+		propertyDeliveryDate: document.getElementById('property-delivery-date').value,
+		
+		
+		
+      //lineName AND stationName
       lineName: selectedLinesString,
 	  stationName: selectedStationString
+
     };
   // 記錄或使用捕捉的值執行進一步的操作 
   console.log(formData);
@@ -207,10 +412,11 @@ function createLineButtonsForAddLine(lineData) {
 		    if (!selectedLines.includes(line)) {
 		        // 如果路线尚未选中，则存入全局变量
 		        selectedLines.push(line);
+		        updateButtons();
 		        console.log('Selected line:', line);
 		        console.log('Selected lines:', selectedLines);
 		        document.getElementById('lineName').innerText ="lineName: "+selectedLines;
-
+				
 		    } else {
 		        console.log('Line already selected:', line);
 		        // 如果路线已经选中，你可以在这里添加一些反馈或其他逻辑
@@ -352,6 +558,7 @@ function createStationButtons(data) {
 		    if (!selectedStation.includes(item)) {
 		        // 如果路线尚未选中，则存入全局变量
 		        selectedStation.push(item);
+		        updateButtons();
 		        console.log('Selected line:', item);
 		        console.log('selected Station:', selectedStation);
 		        document.getElementById('stationName').innerText ="stationName: "+selectedStation;

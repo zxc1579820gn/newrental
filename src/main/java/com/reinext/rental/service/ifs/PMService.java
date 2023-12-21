@@ -15,4 +15,6 @@ public interface PMService {
 
 	void updatePMWithPMDetail1(PMDetail1 pmDetail1);
 
+	void deletePMAndPMDetail1(int pmId);
+
 }

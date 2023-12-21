@@ -13,23 +13,35 @@
     <link  th:href="@{/css/assets/vendors/select2/select2.min.css}" rel="stylesheet">
     <link  th:href="@{/css/assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css}" rel="stylesheet"> 
     <link  th:href="@{/css/assets/css/demo_1/style.css}" rel="stylesheet">
+    <style>
+        input {
+            background-color: #f0f0f0; /* 设置禁用状态的背景颜色 */
+            pointer-events: none; /* 禁用交互 */
+        }
+        textarea{
+            background-color: #f0f0f0;/* 设置禁用状态的背景颜色 */
+            pointer-events: none; /* 禁用交互 */
+        }
+    </style>
 </head>
 
 <body>  
-     
-    
+    <!-- SHOW 駅名&路線名-->
+	<div style="display: flex;flex-direction: column;">
+		<label id="stationName"></label>
+		<div id="station-container"></div>
+		<label id="lineName"></label>
+		<div id="line-container"></div>
+    </div>
 
 
 
+
+<!-- FROM AREA -->
 <div class="container-scroller">
 	<div class="main-panel">
     	<div class="content-wrapper">
         	<div class="row">
-<!-- 駅名&路線名-->
-			<div style="display: flex;flex-direction: column;">
-              <label id="lineName"></label>
-              <label id="stationName"></label>
-            </div>
 <!-- 賃貸借の目的物-->
 	          <div class="col-12 grid-margin stretch-card">
 	            <div class="card">
@@ -38,7 +50,6 @@
 	              </div>
 	            </div>
 	          </div>
-
               <!-- 賃貸借の目的物LEFT-->
               <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
@@ -169,6 +180,726 @@
                     </div>
                 </div>
             </div>
+<!-- ===============================================住戸部分の設備========================================================== -->
+            <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body" style="display: flex;justify-content: center;">
+                  <h1 class="card-title" style="font-size: 20pt;">住戸部分の設備</h1>
+                </div>
+              </div>
+            </div>
+			<!-- TABLE -->
+            <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">項目</th>
+                        <th scope="col">有.無</th>
+                        <th scope="col">型式・内容等</th>
+                        <th scope="col">備考</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                  <!-- 電気-->
+                  <tr>
+                    <td>電気</td>
+                    <td>
+                      <div class="form-check" style="margin-left: 20%;">
+                        <input type="radio" class="form-check-input" id="electricity-yes" name="electricity" value="有" />
+                        <label class="form-check-label" for="electricity-yes">有</label>
+                      </div>
+                      <div class="form-check" style="margin-left: 20%;">
+                        <input type="radio" class="form-check-input" id="electricity-no" name="electricity" value="無" checked/>
+                        <label class="form-check-label" for="electricity-no">無</label>
+                      </div>
+                    </td>
+                    <td>
+                      <textarea id="electricity-context" name="context" rows="4"></textarea>
+                    </td>
+                    <td>
+                      <textarea id="electricity-remarks" name="remarks" rows="4"></textarea>
+                    </td>
+                  </tr>
+                  <!-- ガス-->
+                  <tr>
+                    <td>ガス</td>
+                    <td>
+                      <div class="form-check" style="margin-left: 20%;">
+                        <input type="radio" class="form-check-input" id="gas-yes" name="gas" value="有" />
+                        <label class="form-check-label" for="gas-yes">有</label>
+                      </div>
+                      <div class="form-check" style="margin-left: 20%;">
+                        <input type="radio" class="form-check-input" id="gas-no" name="gas" value="無" checked/>
+                        <label class="form-check-label" for="gas-no">無</label>
+                      </div>
+                    </td>
+                    <td>
+                      <textarea id="gas-context" name="context" rows="4"></textarea>
+                    </td>
+                    <td>
+                      <textarea id="gas-remarks" name="remarks" rows="4"></textarea>
+                    </td>
+                  </tr>
+                  <!-- コンロ -->
+                  <tr>
+                    <td>コンロ</td>
+                    <td>
+                        <div class="form-check" style="margin-left: 20%;">
+                            <input type="radio" class="form-check-input" id="stove-yes" name="stove" value="有" />
+                            <label class="form-check-label" for="stove-yes">有</label>
+                        </div>
+                        <div class="form-check" style="margin-left: 20%;">
+                            <input type="radio" class="form-check-input" id="stove-no" name="stove" value="無" checked/>
+                            <label class="form-check-label" for="stove-no">無</label>
+                        </div>
+                    </td>
+                    <td>
+                        <textarea id="stove-context" name="context" rows="4"></textarea>
+                    </td>
+                    <td>
+                        <textarea id="stove-remarks" name="remarks" rows="4"></textarea>
+                    </td>
+                  </tr>
+                  <!-- 上水道 -->
+                  <tr>
+                    <td>上水道</td>
+                    <td>
+                        <div class="form-check" style="margin-left: 20%;">
+                            <input type="radio" class="form-check-input" id="water-supply-yes" name="water-supply" value="有" />
+                            <label class="form-check-label" for="water-supply-yes">有</label>
+                        </div>
+                        <div class="form-check" style="margin-left: 20%;">
+                            <input type="radio" class="form-check-input" id="water-supply-no" name="water-supply" value="無" checked/>
+                            <label class="form-check-label" for="water-supply-no">無</label>
+                        </div>
+                    </td>
+                    <td>
+                        <textarea id="water-supply-context" name="context" rows="4"></textarea>
+                    </td>
+                    <td>
+                        <textarea id="water-supply-remarks" name="remarks" rows="4"></textarea>
+                    </td>
+                  </tr>
+                  <!-- 下水道 -->
+                  <tr>
+                    <td>下水道</td>
+                    <td>
+                        <div class="form-check" style="margin-left: 20%;">
+                            <input type="radio" class="form-check-input" id="sewerage-yes" name="sewerage" value="有" />
+                            <label class="form-check-label" for="sewerage-yes">有</label>
+                        </div>
+                        <div class="form-check" style="margin-left: 20%;">
+                            <input type="radio" class="form-check-input" id="sewerage-no" name="sewerage" value="無" checked/>
+                            <label class="form-check-label" for="sewerage-no">無</label>
+                        </div>
+                    </td>
+                    <td>
+                        <textarea id="sewerage-context" name="context" rows="4"></textarea>
+                    </td>
+                    <td>
+                        <textarea id="sewerage-remarks" name="remarks" rows="4"></textarea>
+                    </td>
+                  </tr>
+                  <!-- 台所 -->
+                  <tr>
+                    <td>台所</td>
+                    <td>
+                        <div class="form-check" style="margin-left: 20%;">
+                            <input type="radio" class="form-check-input" id="kitchen-yes" name="kitchen" value="有" />
+                            <label class="form-check-label" for="kitchen-yes">有</label>
+                        </div>
+                        <div class="form-check" style="margin-left: 20%;">
+                            <input type="radio" class="form-check-input" id="kitchen-no" name="kitchen" value="無" checked/>
+                            <label class="form-check-label" for="kitchen-no">無</label>
+                        </div>
+                    </td>
+                    <td>
+                        <textarea id="kitchen-context" name="context" rows="4"></textarea>
+                    </td>
+                    <td>
+                        <textarea id="kitchen-remarks" name="remarks" rows="4"></textarea>
+                    </td>
+                  </tr>
+                  <!-- トイレ -->
+                  <tr>
+                    <td>トイレ</td>
+                    <td>
+                        <div class="form-check" style="margin-left: 20%;">
+                            <input type="radio" class="form-check-input" id="toilet-yes" name="toilet" value="有" />
+                            <label class="form-check-label" for="toilet-yes">有</label>
+                        </div>
+                        <div class="form-check" style="margin-left: 20%;">
+                            <input type="radio" class="form-check-input" id="toilet-no" name="toilet" value="無" checked/>
+                            <label class="form-check-label" for="toilet-no">無</label>
+                        </div>
+                    </td>
+                    <td>
+                        <textarea id="toilet-context" name="context" rows="4"></textarea>
+                    </td>
+                    <td>
+                        <textarea id="toilet-remarks" name="remarks" rows="4"></textarea>
+                    </td>
+                  </tr>
+                  <!-- 浴室 -->
+				<tr>
+				  <td>浴室</td>
+				  <td>
+				      <div class="form-check" style="margin-left: 20%;">
+				          <input type="radio" class="form-check-input" id="bathroom-yes" name="bathroom" value="有" />
+				          <label class="form-check-label" for="bathroom-yes">有</label>
+				      </div>
+				      <div class="form-check" style="margin-left: 20%;">
+				          <input type="radio" class="form-check-input" id="bathroom-no" name="bathroom" value="無" checked/>
+				          <label class="form-check-label" for="bathroom-no">無</label>
+				      </div>
+				  </td>
+				  <td>
+				      <textarea id="bathroom-context" name="context" rows="4"></textarea>
+				  </td>
+				  <td>
+				      <textarea id="bathroom-remarks" name="remarks" rows="4"></textarea>
+				  </td>
+				</tr>
+				
+				<!-- 洗面台 -->
+				<tr>
+				  <td>洗面台</td>
+				  <td>
+				      <div class="form-check" style="margin-left: 20%;">
+				          <input type="radio" class="form-check-input" id="washbasin-yes" name="washbasin" value="有" />
+				          <label class="form-check-label" for="washbasin-yes">有</label>
+				      </div>
+				      <div class="form-check" style="margin-left: 20%;">
+				          <input type="radio" class="form-check-input" id="washbasin-no" name="washbasin" value="無" checked/>
+				          <label class="form-check-label" for="washbasin-no">無</label>
+				      </div>
+				  </td>
+				  <td>
+				      <textarea id="washbasin-context" name="context" rows="4"></textarea>
+				  </td>
+				  <td>
+				      <textarea id="washbasin-remarks" name="remarks" rows="4"></textarea>
+				  </td>
+				</tr>
+				
+				<!-- 洗濯機置場 -->
+				<tr>
+				  <td>洗濯機置場</td>
+				  <td>
+				      <div class="form-check" style="margin-left: 20%;">
+				          <input type="radio" class="form-check-input" id="laundry-area-yes" name="laundry-area" value="有" />
+				          <label class="form-check-label" for="laundry-area-yes">有</label>
+				      </div>
+				      <div class="form-check" style="margin-left: 20%;">
+				          <input type="radio" class="form-check-input" id="laundry-area-no" name="laundry-area" value="無" checked/>
+				          <label class="form-check-label" for="laundry-area-no">無</label>
+				      </div>
+				  </td>
+				  <td>
+				      <textarea id="laundry-area-context" name="context" rows="4"></textarea>
+				  </td>
+				  <td>
+				      <textarea id="laundry-area-remarks" name="remarks" rows="4"></textarea>
+				  </td>
+				</tr>
+				
+				<!-- 給湯設備 -->
+				<tr>
+				  <td>給湯設備</td>
+				  <td>
+				      <div class="form-check" style="margin-left: 20%;">
+				          <input type="radio" class="form-check-input" id="water-heater-yes" name="water-heater" value="有" />
+				          <label class="form-check-label" for="water-heater-yes">有</label>
+				      </div>
+				      <div class="form-check" style="margin-left: 20%;">
+				          <input type="radio" class="form-check-input" id="water-heater-no" name="water-heater" value="無" checked/>
+				          <label class="form-check-label" for="water-heater-no">無</label>
+				      </div>
+				  </td>
+				  <td>
+				      <textarea id="water-heater-context" name="context" rows="4"></textarea>
+				  </td>
+				  <td>
+				      <textarea id="water-heater-remarks" name="remarks" rows="4"></textarea>
+				  </td>
+				</tr>
+				
+				<!-- 冷暖房設備（エアコン） -->
+				<tr>
+				  <td>冷暖房設備（エアコン）</td>
+				  <td>
+				      <div class="form-check" style="margin-left: 20%;">
+				          <input type="radio" class="form-check-input" id="air-conditioner-yes" name="air-conditioner" value="有" />
+				          <label class="form-check-label" for="air-conditioner-yes">有</label>
+				      </div>
+				      <div class="form-check" style="margin-left: 20%;">
+				          <input type="radio" class="form-check-input" id="air-conditioner-no" name="air-conditioner" value="無" checked/>
+				          <label class="form-check-label" for="air-conditioner-no">無</label>
+				      </div>
+				  </td>
+				  <td>
+				      <textarea id="air-conditioner-context" name="context" rows="4"></textarea>
+				  </td>
+				  <td>
+				      <textarea id="air-conditioner-remarks" name="remarks" rows="4"></textarea>
+				  </td>
+				</tr>
+				<!-- 照明器具 -->
+				<tr>
+				  <td>照明器具</td>
+				  <td>
+				      <div class="form-check" style="margin-left: 20%;">
+				          <input type="radio" class="form-check-input" id="lighting-yes" name="lighting" value="有" />
+				          <label class="form-check-label" for="lighting-yes">有</label>
+				      </div>
+				      <div class="form-check" style="margin-left: 20%;">
+				          <input type="radio" class="form-check-input" id="lighting-no" name="lighting" value="無" checked />
+				          <label class="form-check-label" for="lighting-no">無</label>
+				      </div>
+				  </td>
+				  <td>
+				      <textarea id="lighting-context" name="context" rows="4"></textarea>
+				  </td>
+				  <td>
+				      <textarea id="lighting-remarks" name="remarks" rows="4"></textarea>
+				  </td>
+				</tr>
+				
+				<!-- 備付家具 -->
+				<tr>
+				  <td>備付家具</td>
+				  <td>
+				      <div class="form-check" style="margin-left: 20%;">
+				          <input type="radio" class="form-check-input" id="furniture-yes" name="furniture" value="有" />
+				          <label class="form-check-label" for="furniture-yes">有</label>
+				      </div>
+				      <div class="form-check" style="margin-left: 20%;">
+				          <input type="radio" class="form-check-input" id="furniture-no" name="furniture" value="無" checked />
+				          <label class="form-check-label" for="furniture-no">無</label>
+				      </div>
+				  </td>
+				  <td>
+				      <textarea id="furniture-context" name="context" rows="4"></textarea>
+				  </td>
+				  <td>
+				      <textarea id="furniture-remarks" name="remarks" rows="4"></textarea>
+				  </td>
+				</tr>
+				
+				<!-- 地デジ対応 -->
+				<tr>
+				  <td>地デジ対応</td>
+				  <td>
+				      <div class="form-check" style="margin-left: 20%;">
+				          <input type="radio" class="form-check-input" id="digital-tv-yes" name="digital-tv" value="有" />
+				          <label class="form-check-label" for="digital-tv-yes">有</label>
+				      </div>
+				      <div class="form-check" style="margin-left: 20%;">
+				          <input type="radio" class="form-check-input" id="digital-tv-no" name="digital-tv" value="無" checked />
+				          <label class="form-check-label" for="digital-tv-no">無</label>
+				      </div>
+				  </td>
+				  <td>
+				      <textarea id="digital-tv-context" name="context" rows="4"></textarea>
+				  </td>
+				  <td>
+				      <textarea id="digital-tv-remarks" name="remarks" rows="4"></textarea>
+				  </td>
+				</tr>
+				
+				<!-- CATV対応 -->
+				<tr>
+				  <td>CATV対応</td>
+				  <td>
+				      <div class="form-check" style="margin-left: 20%;">
+				          <input type="radio" class="form-check-input" id="catv-yes" name="catv" value="有" />
+				          <label class="form-check-label" for="catv-yes">有</label>
+				      </div>
+				      <div class="form-check" style="margin-left: 20%;">
+				          <input type="radio" class="form-check-input" id="catv-no" name="catv" value="無" checked />
+				          <label class="form-check-label" for="catv-no">無</label>
+				      </div>
+				  </td>
+				  <td>
+				      <textarea id="catv-context" name="context" rows="4"></textarea>
+				  </td>
+				  <td>
+				      <textarea id="catv-remarks" name="remarks" rows="4"></textarea>
+				  </td>
+				</tr>
+				
+				<!-- インターネット -->
+				<tr>
+				  <td>インターネット</td>
+				  <td>
+				      <div class="form-check" style="margin-left: 20%;">
+				          <input type="radio" class="form-check-input" id="internet-yes" name="internet" value="有" />
+				          <label class="form-check-label" for="internet-yes">有</label>
+				      </div>
+				      <div class="form-check" style="margin-left: 20%;">
+				          <input type="radio" class="form-check-input" id="internet-no" name="internet" value="無" checked />
+				          <label class="form-check-label" for="internet-no">無</label>
+				      </div>
+				  </td>
+				  <td>
+				      <textarea id="internet-context" name="context" rows="4"></textarea>
+				  </td>
+				  <td>
+				      <textarea id="internet-remarks" name="remarks" rows="4"></textarea>
+				  </td>
+				</tr>
+				<!-- トランクルーム -->
+				<tr>
+				  <td>トランクルーム</td>
+				  <td>
+				    <div class="form-check" style="margin-left: 20%;">
+				      <input type="radio" class="form-check-input" id="trunk-room-yes" name="trunk-room" value="有" />
+				      <label class="form-check-label" for="trunk-room-yes">有</label>
+				    </div>
+				    <div class="form-check" style="margin-left: 20%;">
+				      <input type="radio" class="form-check-input" id="trunk-room-no" name="trunk-room" value="無" checked />
+				      <label class="form-check-label" for="trunk-room-no">無</label>
+				    </div>
+				  </td>
+				  <td>
+				    <textarea id="trunk-room-context" name="context" rows="4"></textarea>
+				  </td>
+				  <td>
+				    <textarea id="trunk-room-remarks" name="remarks" rows="4"></textarea>
+				  </td>
+				</tr>
+				
+				<!-- 専用庭 -->
+				<tr>
+				  <td>専用庭</td>
+				  <td>
+				    <div class="form-check" style="margin-left: 20%;">
+				      <input type="radio" class="form-check-input" id="private-garden-yes" name="private-garden" value="有" />
+				      <label class="form-check-label" for="private-garden-yes">有</label>
+				    </div>
+				    <div class="form-check" style="margin-left: 20%;">
+				      <input type="radio" class="form-check-input" id="private-garden-no" name="private-garden" value="無" checked />
+				      <label class="form-check-label" for="private-garden-no">無</label>
+				    </div>
+				  </td>
+				  <td>
+				    <textarea id="private-garden-context" name="context" rows="4"></textarea>
+				  </td>
+				  <td>
+				    <textarea id="private-garden-remarks" name="remarks" rows="4"></textarea>
+				  </td>
+				</tr>
+				
+				<!-- ルーフバルコニー -->
+				<tr>
+				  <td>ルーフバルコニー</td>
+				  <td>
+				    <div class="form-check" style="margin-left: 20%;">
+				      <input type="radio" class="form-check-input" id="roof-balcony-yes" name="roof-balcony" value="有" />
+				      <label class="form-check-label" for="roof-balcony-yes">有</label>
+				    </div>
+				    <div class="form-check" style="margin-left: 20%;">
+				      <input type="radio" class="form-check-input" id="roof-balcony-no" name="roof-balcony" value="無" checked />
+				      <label class="form-check-label" for="roof-balcony-no">無</label>
+				    </div>
+				  </td>
+				  <td>
+				    <textarea id="roof-balcony-context" name="context" rows="4"></textarea>
+				  </td>
+				  <td>
+				    <textarea id="roof-balcony-remarks" name="remarks" rows="4"></textarea>
+				  </td>
+				</tr>
+				
+				<!-- 鍵 -->
+				<tr>
+				  <td>鍵</td>
+				  <td>
+				    <div class="form-check" style="margin-left: 20%;">
+				      <input type="radio" class="form-check-input" id="key-yes" name="key" value="有" />
+				      <label class="form-check-label" for="key-yes">有</label>
+				    </div>
+				    <div class="form-check" style="margin-left: 20%;">
+				      <input type="radio" class="form-check-input" id="key-no" name="key" value="無" checked />
+				      <label class="form-check-label" for="key-no">無</label>
+				    </div>
+				  </td>
+				  <td>
+				    <textarea id="key-context" name="context" rows="4"></textarea>
+				  </td>
+				  <td>
+				    <textarea id="key-remarks" name="remarks" rows="4"></textarea>
+				  </td>
+				</tr>
+				
+				
+				
+<!-- =============================================住戸部分の設備TABLE END=================================================== -->  				
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+<!-- ===============================================共用部分の設備・施設========================================================== -->
+<div class="col-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body" style="display: flex;justify-content: center;">
+      <h1 class="card-title" style="font-size: 20pt;">共用部分の設備・施設</h1>
+    </div>
+  </div>
+</div>
+
+
+<div class="col-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">項目</th>
+            <th scope="col">有.無</th>
+            <th scope="col">利用の可否・内容等</th>
+            <th scope="col">備考</th>
+          </tr>
+        </thead>
+        <tbody>
+<!-- ============================================================================================================== -->
+		<!--エレベーター-->
+		<tr>
+		  <td>エレベーター</td>
+		  <td>
+		    <div class="form-check" style="margin-left: 20%;">
+		      <input type="radio" class="form-check-input" id="elevator-yes" name="elevator" value="有" />
+		      <label class="form-check-label" for="elevator-yes">有</label>
+		    </div>
+		    <div class="form-check" style="margin-left: 20%;">
+		      <input type="radio" class="form-check-input" id="elevator-no" name="elevator" value="無" checked />
+		      <label class="form-check-label" for="elevator-no">無</label>
+		    </div>
+		  </td>
+		  <td>
+		    <textarea id="elevator-context" name="context" rows="4"></textarea>
+		  </td>
+		  <td>
+		    <textarea id="elevator-remarks" name="remarks" rows="4"></textarea>
+		  </td>
+		</tr>
+		<!--オートロックー-->
+		<tr>
+		  <td>オートロック</td>
+		  <td>
+		    <div class="form-check" style="margin-left: 20%;">
+		      <input type="radio" class="form-check-input" id="auto-lock-yes" name="auto-lock" value="有" />
+		      <label class="form-check-label" for="auto-lock-yes">有</label>
+		    </div>
+		    <div class="form-check" style="margin-left: 20%;">
+		      <input type="radio" class="form-check-input" id="auto-lock-no" name="auto-lock" value="無" checked />
+		      <label class="form-check-label" for="auto-lock-no">無</label>
+		    </div>
+		  </td>
+		  <td>
+		    <textarea id="auto-lock-context" name="context" rows="4"></textarea>
+		  </td>
+		  <td>
+		    <textarea id="auto-lock-remarks" name="remarks" rows="4"></textarea>
+		  </td>
+		</tr>
+		<!--メールボックスー-->
+		<tr>
+		  <td>メールボックス</td>
+		  <td>
+		    <div class="form-check" style="margin-left: 20%;">
+		      <input type="radio" class="form-check-input" id="mailbox-yes" name="mailbox" value="有" />
+		      <label class="form-check-label" for="mailbox-yes">有</label>
+		    </div>
+		    <div class="form-check" style="margin-left: 20%;">
+		      <input type="radio" class="form-check-input" id="mailbox-no" name="mailbox" value="無" checked />
+		      <label class="form-check-label" for="mailbox-no">無</label>
+		    </div>
+		  </td>
+		  <td>
+		    <textarea id="mailbox-context" name="context" rows="4"></textarea>
+		  </td>
+		  <td>
+		    <textarea id="mailbox-remarks" name="remarks" rows="4"></textarea>
+		  </td>
+		</tr>
+		<!--宅配ボックス-->
+		<tr>
+		  <td>宅配ボックス</td>
+		  <td>
+		    <div class="form-check" style="margin-left: 20%;">
+		      <input type="radio" class="form-check-input" id="delivery-box-yes" name="delivery-box" value="有" />
+		      <label class="form-check-label" for="delivery-box-yes">有</label>
+		    </div>
+		    <div class="form-check" style="margin-left: 20%;">
+		      <input type="radio" class="form-check-input" id="delivery-box-no" name="delivery-box" value="無" checked />
+		      <label class="form-check-label" for="delivery-box-no">無</label>
+		    </div>
+		  </td>
+		  <td>
+		    <textarea id="delivery-box-context" name="context" rows="4"></textarea>
+		  </td>
+		  <td>
+		    <textarea id="delivery-box-remarks" name="remarks" rows="4"></textarea>
+		  </td>
+		</tr>
+		<!-- トランクルーム -->
+		<tr>
+		  <td>トランクルーム</td>
+		  <td>
+		    <div class="form-check" style="margin-left: 20%;">
+		      <input type="radio" class="form-check-input" id="storage-room-yes" name="storage-room" value="有" />
+		      <label class="form-check-label" for="storage-room-yes">有</label>
+		    </div>
+		    <div class="form-check" style="margin-left: 20%;">
+		      <input type="radio" class="form-check-input" id="storage-room-no" name="storage-room" value="無" checked />
+		      <label class="form-check-label" for="storage-room-no">無</label>
+		    </div>
+		  </td>
+		  <td>
+		    <textarea id="storage-room-context" name="context" rows="4"></textarea>
+		  </td>
+		  <td>
+		    <textarea id="storage-room-remarks" name="remarks" rows="4"></textarea>
+		  </td>
+		</tr>
+		
+		<!-- 駐車場 -->
+		<tr>
+		  <td>駐車場</td>
+		  <td>
+		    <div class="form-check" style="margin-left: 20%;">
+		      <input type="radio" class="form-check-input" id="parking-yes" name="parking" value="有" />
+		      <label class="form-check-label" for="parking-yes">有</label>
+		    </div>
+		    <div class="form-check" style="margin-left: 20%;">
+		      <input type="radio" class="form-check-input" id="parking-no" name="parking" value="無" checked />
+		      <label class="form-check-label" for="parking-no">無</label>
+		    </div>
+		  </td>
+		  <td>
+		    <textarea id="parking-context" name="context" rows="4"></textarea>
+		  </td>
+		  <td>
+		    <textarea id="parking-remarks" name="remarks" rows="4"></textarea>
+		  </td>
+		</tr>
+		
+		<!-- 駐輪場 -->
+		<tr>
+		  <td>駐輪場</td>
+		  <td>
+		    <div class="form-check" style="margin-left: 20%;">
+		      <input type="radio" class="form-check-input" id="bike-parking-yes" name="bike-parking" value="有" />
+		      <label class="form-check-label" for="bike-parking-yes">有</label>
+		    </div>
+		    <div class="form-check" style="margin-left: 20%;">
+		      <input type="radio" class="form-check-input" id="bike-parking-no" name="bike-parking" value="無" checked />
+		      <label class="form-check-label" for="bike-parking-no">無</label>
+		    </div>
+		  </td>
+		  <td>
+		    <textarea id="bike-parking-context" name="context" rows="4"></textarea>
+		  </td>
+		  <td>
+		    <textarea id="bike-parking-remarks" name="remarks" rows="4"></textarea>
+		  </td>
+		</tr>
+		
+		<!-- バイク置場 -->
+		<tr>
+		  <td>バイク置場</td>
+		  <td>
+		    <div class="form-check" style="margin-left: 20%;">
+		      <input type="radio" class="form-check-input" id="motorcycle-parking-yes" name="motorcycle-parking" value="有" />
+		      <label class="form-check-label" for="motorcycle-parking-yes">有</label>
+		    </div>
+		    <div class="form-check" style="margin-left: 20%;">
+		      <input type="radio" class="form-check-input" id="motorcycle-parking-no" name="motorcycle-parking" value="無" checked />
+		      <label class="form-check-label" for="motorcycle-parking-no">無</label>
+		    </div>
+		  </td>
+		  <td>
+		    <textarea id="motorcycle-parking-context" name="context" rows="4"></textarea>
+		  </td>
+		  <td>
+		    <textarea id="motorcycle-parking-remarks" name="remarks" rows="4"></textarea>
+		  </td>
+		</tr>
+<!-- =======================================住戸部分の設備 TABLE END================================================= -->
+			</tbody>
+		</table>
+		</div>
+	</div>
+</div>
+<!-- ===============================================契約期間========================================================== -->
+<div class="col-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body" style="display: flex;justify-content: center;">
+      <h1 class="card-title" style="font-size: 20pt;">契約期間</h1>
+    </div>
+  </div>
+</div>
+
+<div class="col-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <table class="table">
+        <tbody>
+<!-- ============================================================================================================== -->
+          <!--始期-->
+          <tr>
+            <td>始期</td>
+            <td> 
+              <input type="text" id="contract-start-date" name="contract-start-date" class="typeahead">
+            </td>
+            <td  rowspan="2" >
+              <div style="display: flex;align-items: center;flex-wrap: wrap">
+              <label>合計契約時間</label>
+              <input type="text" id="total-contract-duration" name="total-contract-duration" class="typeahead">
+
+              </div>
+            </td>
+            <td>目的物件の引渡日</td>
+          </tr>
+          <!--終期-->
+          <tr>
+            <td>終期</td>
+            <td>
+              <input type="text" id="contract-end-date" name="contract-end-date" class="typeahead">
+            </td>
+            <td style="display: flex;">
+              <input type="text" id="property-delivery-date" name="property-delivery-date" class="typeahead">
+            </td>
+          </tr>
+<!-- ======================================契約期間= TABLE END===================================================== -->
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+
+
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             
 <!-- ========================================================================================================================-->
 <div class="col-12 grid-margin stretch-card">

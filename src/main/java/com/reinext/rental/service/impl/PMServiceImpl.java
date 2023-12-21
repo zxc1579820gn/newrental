@@ -78,6 +78,23 @@ public class PMServiceImpl  implements PMService{
     	    // 保存更新后的 PMDetail1 对象（包括关联的 PM 对象）
     	    pmDetail1Dao.save(pmDetail1);
     }
+    
+    @Override
+    public void deletePMAndPMDetail1(int pmId) {
+        // 根據 PM ID 取得對應的 PM
+        PM pm = pmDao.findById(pmId);
+
+        if (pm != null) {
+            // 根據 PM ID 取得對應的 PMDetail1
+            PMDetail1 pmDetail1 = pmDetail1Dao.findByPmId(pmId);
+            if (pmDetail1 != null) {
+                // 刪除 PMDetail1
+                pmDetail1Dao.delete(pmDetail1);
+            }
+            // 刪除 PM
+            pmDao.delete(pm);
+        }
+    }
 
 
 }

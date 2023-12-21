@@ -21,7 +21,11 @@ fetch('/get_all_pm')
                     <td>${building.buildingType}</td>
                     <td>${building.floorArea}</td>
                     <td>${building.otherFloorArea}</td>
-                    <td><button onclick="handleButtonClick(${building.id})">物件情報</button></td>
+                    <td>
+                    	<div class="fromBtn">
+                    	<button onclick="handleButtonClick(${building.id})" class="viewBtn" >物件情報</button>
+                    	</div>
+                    </td>
                 `;
                 tableBody.appendChild(row);
             });

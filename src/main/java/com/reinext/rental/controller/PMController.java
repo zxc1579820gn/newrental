@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -43,6 +44,16 @@ public class PMController {
 	            return new ResponseEntity<>("PM and PMDetail1 saved successfully", HttpStatus.OK);
 	        } catch (Exception e) {
 	            return new ResponseEntity<>("Error saving PM and PMDetail1: " + e.getMessage(), HttpStatus.BAD_REQUEST);
+	        }
+	    }
+	   
+	    @PostMapping("/delete_pm_and_pmdetail1/{pmId}")
+	    public ResponseEntity<String> deletePMAndPMDetail1(@PathVariable(name = "pmId") int pmId) {
+	        try {
+	            pmService.deletePMAndPMDetail1(pmId);
+	            return new ResponseEntity<>("PM and PMDetail1 deleted successfully", HttpStatus.OK);
+	        } catch (Exception e) {
+	            return new ResponseEntity<>("Error deleting PM and PMDetail1: " + e.getMessage(), HttpStatus.BAD_REQUEST);
 	        }
 	    }
 

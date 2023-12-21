@@ -99,3 +99,6 @@ button {
 button:hover {
     background-color: #45a049;
 }
+td{
+  border: 1px solid #dee2e6;
+}

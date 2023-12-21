@@ -8,4 +8,6 @@ import com.reinext.rental.entity.PM;
 @Repository
 public interface PMDao extends JpaRepository<PM, Integer>{
 
+	PM findById(int pmId);
+
 }
